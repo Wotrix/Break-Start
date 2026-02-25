@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bread Start</title>
+    <link rel="stylesheet" href="css/styles.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="bg-overlay"></div>
+
+    <div class="container" id="main-container">
+        <div class="widget-layer">
+            <div class="time-box" id="time-widget">
+                <div id="clock">00:00</div>
+                <div id="date">...</div>
+            </div>
+        </div>
+
+        <div class="search-wrapper">
+            <div class="search-container" id="search-container">
+                <div class="engine-icon-wrapper" id="current-engine-icon" onclick="toggleEngineDashboard(event)"
+                    onmousedown="event.preventDefault()"></div>
+                <input type="text" id="search-input" class="search-input" placeholder="搜索" autocomplete="off">
+                <div class="search-clear" id="search-clear" onclick="clearSearch()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </div>
+                <div class="search-trigger" onclick="doSearch()">
+                    <img class="search-svg" id="search-trigger-icon" src="assets/icons_search/search_Search.svg"
+                        alt="搜索">
+                </div>
+            </div>
+
+            <div class="suggestions-box" id="suggestions-box">
+                <div class="search-suggestions" id="search-suggestions"></div>
+            </div>
+
+            <div class="engine-dashboard" id="engine-dashboard" onmousedown="event.preventDefault()">
+                <div class="dashboard-toolbar">
+                    <div class="toolbar-title">切换搜索引擎</div>
+                </div>
+                <div id="dashboard-content"></div>
+            </div>
+        </div>
+
+        <div class="shortcuts-section">
+            <div class="shortcuts-grid" id="shortcuts-grid"></div>
+        </div>
+    </div>
+
+    <!-- 设置按钮 -->
+    <button class="settings-trigger" id="settings-trigger" onclick="openSettings()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path
+                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+            <circle cx="12" cy="12" r="3" />
+        </svg>
+    </button>
+
+    <!-- 设置遮罩 + 面板 -->
+    <div class="settings-overlay" id="settings-overlay" onclick="closeSettings()"></div>
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+            <h2 class="settings-title">设置</h2>
+            <button class="settings-close" onclick="closeSettings()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+        <div class="settings-body" id="settings-body"></div>
+    </div>
+
+    <!-- 对话框 -->
+    <div class="dialog-overlay" id="dialog-overlay"></div>
+    <div class="custom-dialog" id="custom-dialog">
+        <div class="dialog-title" id="dialog-title">提示</div>
+        <input type="text" class="dialog-input" id="dialog-input" placeholder="">
+        <div class="dialog-actions">
+            <button class="dialog-btn dialog-cancel" onclick="closeDialog(null)">取消</button>
+            <button class="dialog-btn dialog-confirm" onclick="submitDialog()">确定</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script type="module" src="js/main.js?v=3"></script>
+</body>
+
+</html>
